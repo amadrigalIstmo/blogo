@@ -60,6 +60,10 @@ func main() {
 		handlers.ListUsers(app)
 	case "agg":
 		handlers.HandleAgg(app)
+	case "addfeed":
+		handlers.AddFeed(app, os.Args[2:])
+	case "feeds":
+		handlers.ListFeeds(app)
 	default:
 		log.Fatal("Invalid command")
 	}
