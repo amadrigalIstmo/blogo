@@ -72,6 +72,23 @@ func ResetDatabase(app Application) {
 	fmt.Println("Database reset successfully")
 }
 
+// Handler para listar usuarios
+func ListUsers(app Application) {
+	users, err := app.GetDB().GetUsers(context.Background())
+	if err != nil {
+		log.Fatal("Error fetching users:", err)
+	}
+
+	currentUser := app.GetConfig().CurrentUser
+	for _, user := range users {
+		marker := ""
+		if user.Name == currentUser {
+			marker = " (current)"
+		}
+		fmt.Printf("* %s%s\n", user.Name, marker)
+	}
+}
+
 func handleDBError(err error, username string) {
 	if strings.Contains(err.Error(), "unique constraint") {
 		log.Fatalf("User '%s' already exists", username)

@@ -46,7 +46,7 @@ func main() {
 	}
 
 	if len(os.Args) < 2 {
-		log.Fatal("Usage: go run . [register|login|reset] [arguments]")
+		log.Fatal("Usage: go run . [register|login|reset|users|agg] [arguments]")
 	}
 
 	switch os.Args[1] {
@@ -56,6 +56,10 @@ func main() {
 		handlers.RegisterUser(app, os.Args[2:])
 	case "login":
 		handlers.LoginUser(app, os.Args[2:])
+	case "users":
+		handlers.ListUsers(app)
+	case "agg":
+		handlers.HandleAgg(app)
 	default:
 		log.Fatal("Invalid command")
 	}
