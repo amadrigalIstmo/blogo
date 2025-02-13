@@ -44,3 +44,5 @@ debug
 
 
 .env
+
+.gatorconfig.json
